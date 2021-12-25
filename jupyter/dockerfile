@@ -5,7 +5,31 @@ LABEL description="This is custom Docker Image data science."
 WORKDIR /home/jovyan/
 
 COPY requirements.txt requirements.txt
-RUN pip install --upgrade pip 
-RUN pip install -r  requirements.txt
+RUN pip install --upgrade pip &&\
+    pip install -r  requirements.txt &&\
+    pip install jupyter_contrib_nbextensions &&\
+    pip install jupyter-tabnine --user &&\
+    pip install python-language-server &&\
+    pip install jupyterthemes &&\
+    pip install yapf &&\
+    pip install autopep8
+
+RUN jupyter contrib nbextension install --user &&\
+    jupyter nbextension install --py jupyter_tabnine --user &&\
+    jupyter nbextension enable --py jupyter_tabnine --user &&\
+    jupyter serverextension enable --py jupyter_tabnine --user &&\
+    jupyter nbextension enable jupyter_tabnine --py &&\
+    jupyter nbextension install https://github.com/kenkoooo/jupyter-autopep8/archive/master.zip --user &&\
+    jupyter nbextension enable jupyter-autopep8-master/jupyter-autopep8 &&\
+    jupyter nbextension enable hinterland/main &&\ 
+    jupyter nbextension enable nbTranslate/main &&\  
+    jupyter nbextension enable highlighter/highlighter &&\
+    jupyter nbextension enable snippets_menu/main &&\
+    jupyter nbextension enable python-markdown/main &&\
+    jupyter nbextension enable varInspector/main &&\
+    jupyter nbextension enable code_prettify/code_prettify
+
+RUN jt -t onedork -T -f fira -fs 105 -nf ptsans -nfs 11 -cursw 5 -cursc r -cellw 95% 
+
 WORKDIR /home/jovyan/work
 

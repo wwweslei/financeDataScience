@@ -12,3 +12,4 @@ database/auto.cnf
 *.pyc
 req
 requirements.txt
+*-checkpoint.ipynb
