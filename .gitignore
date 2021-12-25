@@ -1,0 +1,14 @@
+.git/
+/database/app_development
+database/performance_schema
+database/mysql
+database/ibdata1
+database/ib_logfile1
+database/ib_logfile0
+database/auto.cnf
+/.venv
+*.vscode
+*__pycache__
+*.pyc
+req
+requirements.txt

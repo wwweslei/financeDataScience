@@ -1,0 +1,14 @@
+FROM python:3.11-rc-bullseye as base
+WORKDIR /home/app
+COPY . .
+
+FROM base as debug
+RUN pip install .
+RUN pip install debugpy
+
+FROM base as prod
+RUN pip install .
+RUN pip install gunicorn
+
+FROM base as dev
+RUN  pip install .['dev']

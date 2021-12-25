@@ -1,0 +1,50 @@
+version: "3"
+
+services: 
+  dev:
+    image: dev
+    container_name: flask_dev-container
+    build:
+      context: .
+      target: dev
+    ports: 
+      - "5000:5000"
+    volumes: 
+      - .:/home/app
+    environment:
+      - FLASK_APP=wsgi.py
+      - FLASK_ENV=development
+    entrypoint: ["flask", "run", "--host", "0.0.0.0"]
+
+  prod:
+    image: prod
+    container_name: flask_prod-container
+    build:
+      context: .
+      target: prod
+    ports: 
+      - "5000:5000"
+    volumes: 
+      - .:/home/app
+    environment:
+      - FLASK_ENV=prod
+      - FLASK_DEBUG=0
+    entrypoint: ["gunicorn", "--reload", "--bind", "0.0.0.0:5000", "wsgi:app"]
+    
+  debug:
+    image: debug
+    container_name: flask_debug-container
+    build:
+      context: .
+      target: debug
+    ports: 
+      - "5000:5000"
+      - "5678:5678"
+    volumes: 
+      - .:/home/app
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=debug
+      - FLASK_DEBUG=1
+    entrypoint: [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "-m", "wsgi",  "--wait-for-client", "--multiprocess", "-m", "flask", "run", "--host", "0.0.0.0"]
