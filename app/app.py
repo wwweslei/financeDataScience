@@ -8,6 +8,3 @@ def create_app():
         return '<h1>Hello from Flask & Docker</h2>'
 
     return app
-
-
-

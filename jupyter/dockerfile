@@ -12,8 +12,8 @@ RUN pip install --upgrade pip &&\
     pip install python-language-server &&\
     pip install jupyterthemes &&\
     pip install yapf &&\
-    pip install autopep8
-
+    pip install autopep8\
+    pip install --upgrade jupyter_http_over_ws>=0.0.7 && jupyter serverextension enable --py jupyter_http_over_ws
 RUN jupyter contrib nbextension install --user &&\
     jupyter nbextension install --py jupyter_tabnine --user &&\
     jupyter nbextension enable --py jupyter_tabnine --user &&\

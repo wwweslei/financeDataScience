@@ -11,5 +11,13 @@ database/auto.cnf
 *__pycache__
 *.pyc
 req
-requirements.txt
 *-checkpoint.ipynb
+.mypy_cache
+finance/documents/negocios.xlsx
+finance/documents/negociosNUinvest.xlsx
+finance/documents/posicao.xlsx
+financeDataScience.egg-info/dependency_links.txt
+financeDataScience.egg-info/PKG-INFO
+financeDataScience.egg-info/requires.txt
+financeDataScience.egg-info/top_level.txt
+financeDataScience.egg-info/SOURCES.txt
